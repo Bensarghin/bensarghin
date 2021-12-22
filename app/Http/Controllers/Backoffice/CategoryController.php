@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -33,6 +34,11 @@ class CategoryController extends Controller
         return response()->json($categories);
     }
 
+    public function gettopics(){
+        $topics = Topic::all();
+        return response()->json($topics);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +47,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::insert([
+            'title' => $request->title,
+            'description' => $request->description,
+            'topic_id' => $request->topic_id,
+        ]);
     }
 
     /**

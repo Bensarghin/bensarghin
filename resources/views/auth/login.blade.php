@@ -4,24 +4,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blog site</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link href="{{asset('css/all.min.css')}}" rel="stylesheet" >
+    <link href="{{asset('css/app.css')}}" rel="stylesheet" >
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" 
-    crossorigin="anonymous" 
-    referrerpolicy="no-referrer" />
+    <link href="{{asset('css/all.min.css')}}" rel="stylesheet" >
+    <link href="{{ asset('css/front.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
 
 </head>
 <body class="{{__('labels.dir')}}" >
-
+    <div id="body" class="container">
+    <header>
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">
+                    <a class="login-brand"><span>b</span><span>غ</span></a>
+                    {{ __('Login') }}
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -85,6 +87,8 @@
             </div>
         </div>
     </div>
+</div>
+</header>
 </div>
     <script src="{{asset('js/app.js')}}">
     </script>

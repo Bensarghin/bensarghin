@@ -15,8 +15,7 @@
     referrerpolicy="no-referrer" />
 
 </head>
-<body class="{{__('labels.dir')}}" >
-    <div  id="app">
+<body class="{{__('labels.dir')}}">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -29,46 +28,32 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a href="{{route('home')}}" class="nav-link">Acceuil</a></li>
-                        <li class="nav-item"><a href="{{route('blog')}}" class="nav-link">Blogs</a></li>
-                        <li class="nav-item"><a href="{{route('user')}}" class="nav-link">Users</a></li>
-                        <li class="nav-item"><a href="{{route('category')}}" class="nav-link">Categories</a></li>
-                        <li class="nav-item"><a href="{{route('category')}}" class="nav-link">System</a></li>
+                        <li class="nav-item"><a href="{{route('admin.home')}}" class="nav-link">Acceuil</a></li>
+                        <li class="nav-item"><a href="{{route('blog.index')}}" class="nav-link">Blogs</a></li>
+                        <li class="nav-item"><a href="{{route('user.index')}}" class="nav-link">Users</a></li>
+                        <li class="nav-item"><a href="{{route('category.index')}}" class="nav-link">Categories</a></li>
+                        <li class="nav-item"><a href="{{route('topic.index')}}" class="nav-link">Topics</a></li>
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::guard('admin')->user()->full_name }}
+                            </a>
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
+                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

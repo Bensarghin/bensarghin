@@ -1,0 +1,115 @@
+/* == Global CSS == */
+body {
+    background-color: #fff;
+    position: relative;
+/* ==  FBF37C == */}
+#body {background-color: #fff}
+.body-bg{
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background-color: #FBF37C
+}
+*{font-family:  Cambria, Arial, sans-srif;}
+h1{
+    font-size: 46px;
+    line-height: 110%;
+    color: #2F1C6A;
+    letter-spacing: 1px;
+}
+p{
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #36344D;
+    letter-spacing: .3px;
+}
+/*== begin header style == */
+.navbar-light {background-color:#fff !important;}
+.navbar-light .container-fluid .nav-link {
+    color: #7F7F7F !important;
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+.navbar-light .container-fluid .nav-link:hover {color: #000 !important;}
+.navbar-light .container-fluid .navbar-brand,
+.login-brand {
+    text-transform: uppercase;
+    font-family: Cambria, sans-serif;
+    font-size: 16px;
+    background-color: #343a40;
+    border-radius: 5px;
+    color: #FFF;
+    position: relative;      
+    transform: rotate(-15deg);
+      -webkit-transform: rotate(-15deg);
+      -moz-transform: rotate(-15deg);
+      -ms-transform: rotate(-15deg);
+      -o-transform: rotate(-15deg);
+    padding:5px 15px 5px 5px;
+}
+.navbar-light .container-fluid .navbar-brand span,
+.login-brand span { 
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #FBF37C;
+    color: #343a40;
+    padding: 3px
+}
+.navbar-light .container-fluid .navbar-brand span:last-child,
+.login-brand span:last-child{ 
+    background-color: transparent;
+    color: #FBF37C;
+      transform: rotate(-15deg);
+      -webkit-transform: rotate(-15deg);
+      -moz-transform: rotate(-15deg);
+      -ms-transform: rotate(-15deg);
+      -o-transform: rotate(-15deg);
+    display: inline-block;
+    right: 0px;
+    position: absolute;
+}
+.navbar-dark .ml-auto > a,
+.navbar-dark .ml-auto .fixed a{
+    font-family:  Arial, sans-serif;
+    color: #FFF;
+    text-decoration: none;
+}
+.navbar-dark .container-fluid .nav-link {
+    font-family:  Arial, sans-serif;
+	color: #FFF !important;
+    border-bottom:  solid 3px #343a40;
+    margin: 0 10px;
+    padding: 0
+}
+.navbar-dark .container-fluid .nav-link:hover,
+.navbar-dark .ml-auto > a:hover,
+.navbar-dark .ml-auto .fixed a:hover{border-bottom: solid 3px #FBF37C;}
+.breadcrumb{background-color: #343a40;}
+.breadcrumb .breadcrumb-item,
+.breadcrumb a{
+    font-family:  Arial, sans-serif;
+	color: #FBF37C;
+	font-weight: 400;
+	text-transform: capitalize;
+	letter-spacing: 0.08
+}
+/*== end header style ==*/
+
+/* == ==*/
+.card-footer {background-color: #fff}
+.card-header {background-color: #fff}
+.btn-primary {
+	color: #fff;
+	letter-spacing: 1px;
+	background-color: #7F7F7F ;
+	border-color: #7F7F7F;
+}
+.btn-primary:hover {
+	background-color: #504f4f ;
+	border-color: #504f4f;
+}

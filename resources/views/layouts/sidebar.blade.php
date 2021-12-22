@@ -12,7 +12,7 @@
                     </ul>
                     <div class="blogs">
                         Blogs : {{$users->blog->count()}}
-                        <a href="{{route('blog.create')}}" class="btn btn-primary">Blog + </a>
+                        <a href="{{route('blog.create',['user'=>$users->id])}}" class="btn btn-primary">Blog + </a>
                     </div>
                 </div>
             </div>

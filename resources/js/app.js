@@ -19,8 +19,9 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// category component
 Vue.component('category-list-component', require('./components/Category/ListComponent.vue').default);
+Vue.component('comments-component', require('./components/readComments/comments.vue').default);
+Vue.component('topic-list-component', require('./components/Topic/listComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

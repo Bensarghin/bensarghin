@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
+@include('layouts.sidebar')
+
 @section('list','blogs')
 @section('action','new')
 
-@include('layouts.sidebar')
         <div class="card">
           <div class="card-body">
             <form action="{{route('blog.insert')}}" method="POST">
@@ -11,10 +12,6 @@
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">{{__('labels.title')}} :</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="{{__('labels.title')}} :" name="title">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Categories :</label>
-                   
                   </div>
                   <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">{{__('labels.post')}} :</label>

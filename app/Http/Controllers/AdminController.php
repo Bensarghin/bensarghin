@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Vonage\Message\Shortcode\Alert;
+use App\Http\Controllers\Controller;
+use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest:admin',['except' =>'logout']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,32 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('Guests.home');
+        
+
+    }
+
+    public function login()
+    {
+        return view('Backoffice.Auth.login');
+    }
+
+    public function check(Request $request)
+    {
+        $credential = $request->only(['email', 'password']);
+        if (Auth::guard('admin')->attempt($credential)) {
+            return redirect()->route('admin.home');
+        } 
+        else {
+            throw ValidationException::withMessages([
+                'email' => 'invalid email or password'
+            ]);
+        }
+    }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.home');
     }
 
     /**
@@ -82,4 +115,5 @@ class AdminController extends Controller
     {
         //
     }
+
 }

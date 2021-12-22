@@ -16,7 +16,7 @@ class BlogController extends Controller
 {
     public function __construct()
     {
-        return $this->middleware('auth');
+        return $this->middleware('auth:admin');
     }
     /**
      * Display a listing of the resource.
@@ -34,9 +34,9 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($user)
     {
-        $users = Auth::user();
+        $users = User::find($user);
         $categories = Category::all();
         return view('Backoffice.blogs.create',[
         'users'        => $users,
@@ -59,7 +59,7 @@ class BlogController extends Controller
             'user_id' => Auth::id()
         ]);
         $blog->category()->attach($request->categories);
-        return redirect()->route('blog');
+        return redirect()->route('blog.index');
     }
 
     /**

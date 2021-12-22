@@ -1,26 +1,10 @@
-@extends('layouts.app')
-
+@extends('Guests.layouts.app')
 @section('content')
-@section('list','control')
-@section('action','panel')
-
-<div class="container">
-    <div class="row justify-content-center">
+@section('navbar','trends blogs')
+@auth
+@else
+    <div class="row">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        @endauth
+    @include('Guests.layouts.blogs')
 @endsection

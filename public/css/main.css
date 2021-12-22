@@ -118,3 +118,9 @@
 .modal-body .form-check {
     display: inline-block;
 }
+
+/* == ==*/
+.categories-list:hover{
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}

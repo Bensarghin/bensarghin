@@ -10,6 +10,9 @@ class Comment extends Model
     use HasFactory;
     
     public $timestamps = true;
+    protected $casts = [
+        'created_at'   => 'date:Y M d H:i',
+    ];
 
     public function blog(){
         return $this->belongsTo('App\Models\blog','blog_id');
