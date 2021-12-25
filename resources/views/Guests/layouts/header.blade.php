@@ -15,28 +15,32 @@
     <link href="{{asset('css/all.min.css')}}" rel="stylesheet" >
     <link href="{{ asset('css/front.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
+  type="text/css"
+/>
 </head>
-<body>
-
-		
-	<div class="body-bg"></div>
-	<div id="body" class="container">
+<body class="{{__('labels.dir')}}" >
+	<div id="body">
 	<header>
 
 		<!-- top navbar -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container">
-		  <div class="container-fluid">
-		  	<a class="navbar-brand"><span>b</span><span>غ</span></a>
-		      <ul class="navbar-nav m-auto">
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav1" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+		  <div class="collapse navbar-collapse" id="navbarNav1">
+		      <ul class="navbar-nav ms-auto">
 		        <li class="nav-item">
 		          <a class="nav-link active" aria-current="page" href="{{route('home')}}">{{__('layout.home')}}</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" href="#">{{__('layout.about')}}</a>
+		          <a class="nav-link" href="{{route('about')}}">{{__('layout.about')}}</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" href="#">{{__('layout.contact')}}</a>
+		          <a class="nav-link" href="{{route('contact')}}">{{__('layout.contact')}}</a>
 		        </li>
 		        <li class="nav-item">
 		          <a class="nav-link" href="#">{{__('layout.termes')}}</a>
@@ -61,6 +65,7 @@
 		<div class="main-header">
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			  <div class="container-fluid">
+			  <a class="navbar-brand"><span>b</span><span>غ</span></a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
@@ -94,7 +99,6 @@
 			      <form class="d-flex">
 					<div class="input-group">
 					  <input type="search" class="form-control" placeholder="Search ..." aria-label="Recipient's username" aria-describedby="button-addon2">
-					  <button class="btn btn-outline-light" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
 					</div>
 			      </form>
 			      <!-- login and logout -->
@@ -109,6 +113,14 @@
 						            @csrf
 						      </form>
 					          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					            <li>
+					            	<a class="dropdown-item" href="{{ route('user.profile') }}"> 
+					            	{{ __('Profile') }}</a>
+					            </li>
+					            <li>
+					            	<a class="dropdown-item" href="{{ route('user.profile') }}"> 
+					            	{{ __('Edit Login') }}</a>
+					            </li>
 					            <li>
 					            	<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> 
 					            	{{ __('Logout') }}</a>
@@ -136,9 +148,9 @@
 
 	</header>
 
-	<nav style="--bs-breadcrumb-divider: '/';--bs-breadcrumb-divider-color:'#FFF';" class="mt-4" aria-label="breadcrumb">
+	<nav style="--bs-breadcrumb-divider: '/';--bs-breadcrumb-divider-color:'#FFF';"aria-label="breadcrumb">
 	  <ol class="breadcrumb">
-	    <li class="breadcrumb-item"><a href="#">Home</a></li>
+	    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
 	    <li class="breadcrumb-item active" aria-current="page">@yield('navbar')</li>
 	  </ol>
 	</nav>

@@ -1,0 +1,53 @@
+/* == login css == */
+a{
+  text-decoration: none !important;
+}
+.text-bold {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    line-height: 1;
+    padding: 5px;
+}
+.login-header {
+  position: relative !important ;
+  padding: 30px
+}
+.login-brand {
+  position: absolute !important;
+    text-transform: uppercase;
+    font-family: Cambria, sans-serif;
+    font-size: 16px;
+    background-color: #505050;
+    border-radius: 5px;
+    color: #FFF;
+    position: relative;      
+    transform: rotate(-15deg);
+      -webkit-transform: rotate(-15deg);
+      -moz-transform: rotate(-15deg);
+      -ms-transform: rotate(-15deg);
+      -o-transform: rotate(-15deg);
+    padding:5px 15px 5px 5px;
+}
+.login-header .login-brand span { 
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #FBF37C;
+    color: #343a40;
+    padding: 3px
+}
+
+.login-header .login-brand span:last-child{ 
+    background-color: transparent;
+    color: #FBF37C;
+      transform: rotate(-15deg);
+      -webkit-transform: rotate(-15deg);
+      -moz-transform: rotate(-15deg);
+      -ms-transform: rotate(-15deg);
+      -o-transform: rotate(-15deg);
+    display: inline-block;
+    right: 0px;
+    position: absolute;
+}

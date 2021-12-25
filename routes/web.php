@@ -15,6 +15,9 @@ use App\Http\Controllers\Backoffice\TopicController;
 //visiteur controllers
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogerController;
+use App\Http\Controllers\pageController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,26 +63,40 @@ use App\Http\Controllers\AdminController;
         Route::get('/gettopics', [TopicController::class,'create']);
         Route::post('/inserttopic', [TopicController::class,'store']);
     });
-
-
 });
+
+// Blogers routes
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){ 
-Route::get('home/', [HomeController::class, 'index'])->name('home');
-Route::get('/', [HomeController::class, 'index']);
-        Route::get('/your-blogs', [HomeController::class, 'yourBlogs'])->name('your.blogs');
-        Route::get('/create-blog', [HomeController::class, 'createBlog'])->name('create.blog');
-        Route::post('/create-blog', [HomeController::class, 'storeBlog'])->name('store.blog');
+
+        Route::get('home/', [HomeController::class, 'index'])->name('home');
+        Route::get('/', [HomeController::class, 'index']);
+        Route::get('/your-blogs', [BlogerController::class, 'yourBlogs'])->name('your.blogs');
+        Route::get('/create-blog', [BlogerController::class, 'create'])->name('create.blog');
+        Route::post('/create-blog', [BlogerController::class, 'store'])->name('store.blog');
+        Route::get('/edit-blog/{id}', [BlogerController::class, 'edit'])->name('edit.blog');
+        Route::post('/update-blog/{id}', [BlogerController::class, 'update'])->name('update.blog');
+        Route::get('/delete/{id}', [BlogerController::class, 'destroy'])->name('delete.blog');
+
+
+
         Route::post('/search-blog', [HomeController::class, 'searchBlog'])->name('search.blog');
         Route::get('/read-blog/{blog}', [HomeController::class, 'read'])->name('read.blog');
         Route::get('/getcomments', [HomeController::class, 'getComments']);
         Route::post('/comment', [HomeController::class, 'storeComment']);
 
         Route::get('/category/{category}', [HomeController::class, 'category'])->name('category.blogs');
+        Route::get('/contact-us', [pageController::class,'contact'])->name('contact');
+        Route::get('/about', [pageController::class,'about'])->name('about');
+
+        Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
         
 Auth::routes();
 //...
 });
+
+// http routes 
+Route::get('/get/user',[BlogerController::class,'getUser']);

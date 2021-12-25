@@ -2296,29 +2296,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      user: [],
       comments: [],
-      content: ''
+      content: '',
+      isEdited: false
     };
   },
   created: function created() {
     this.getData();
+    this.getUser();
   },
   methods: {
-    getData: function getData() {
+    getUser: function getUser() {
       var _this = this;
 
-      axios.get('/getcomments').then(function (response) {
-        _this.comments = response.data;
+      axios.get('/get/user').then(function (response) {
+        _this.user = response.data;
       });
     },
-    storeComment: function storeComment() {
-      axios.post('/comment', {
-        content: this.content
-      }).then(this.getData);
-      this.content = '';
+    getData: function getData() {
+      var _this2 = this;
+
+      axios.get('/getcomments').then(function (response) {
+        _this2.comments = response.data;
+      });
+    },
+    saveComment: function saveComment() {
+      if (!this.isEdited) {
+        axios.post('/comment', {
+          content: this.content
+        }).then(this.getData);
+        this.content = '';
+      } else {
+        axios.post('/updateComment', {
+          content: this.content
+        }).then(this.getData);
+        this.content = '';
+        this.isEdited = false;
+      }
+    },
+    edit: function edit(comment) {
+      document.getElementById('comment-text').focus();
+      this.content = comment.content;
+      this.isEdited = true;
     }
   }
 });
@@ -38357,37 +38401,91 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "card-body" },
+      { staticClass: "card-body comments" },
       _vm._l(_vm.comments, function (comment) {
         return _c("div", { key: comment.id }, [
-          _c("div", { staticClass: "p-3 mb-1 bg-body text-muted rounded" }, [
-            _c("ul", { staticClass: "list-inline" }, [
-              _vm._m(1, true),
-              _vm._v(" "),
-              _c("li", { staticClass: "list-inline-item" }, [
-                _c("h6", { staticClass: "card-title" }, [
-                  _vm._v(
-                    _vm._s(comment.user.name) +
-                      " " +
-                      _vm._s(comment.user.last_name)
+          _c("div", { staticClass: "text-muted" }, [
+            comment.user.id == _vm.user.id
+              ? _c("div", { staticClass: "bg-light" }, [
+                  _c("h6", { staticClass: "p-2 card-subtitle text-muted" }, [
+                    _c("i", { staticClass: "far fa-clock" }),
+                    _vm._v(" : " + _vm._s(comment.created_at)),
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "list-inline" }, [
+                    _vm._m(1, true),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-inline-item" }, [
+                      _c("h6", { staticClass: "card-title" }, [
+                        _vm._v(
+                          _vm._s(comment.user.name) +
+                            " " +
+                            _vm._s(comment.user.last_name)
+                        ),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "list-inline" }, [
+                    _c("li", { staticClass: "list-inline-item" }, [
+                      _c(
+                        "p",
+                        {
+                          staticClass: "p-2",
+                          staticStyle: { "font-size": "19px !important" },
+                          attrs: { id: "comment-box" },
+                        },
+                        [_vm._v(_vm._s(comment.content))]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-inline-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-muted p-2",
+                          on: {
+                            click: function ($event) {
+                              return _vm.edit(comment)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fas fa-pen-square" })]
+                      ),
+                      _vm._v(" | "),
+                      _vm._m(2, true),
+                    ]),
+                  ]),
+                ])
+              : _c("div", { staticClass: "bg-body" }, [
+                  _c("h6", { staticClass: "p-2 card-subtitle text-muted" }, [
+                    _c("i", { staticClass: "far fa-clock" }),
+                    _vm._v(" : " + _vm._s(comment.created_at)),
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "list-inline" }, [
+                    _vm._m(3, true),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "list-inline-item" }, [
+                      _c("h6", { staticClass: "card-title" }, [
+                        _vm._v(
+                          _vm._s(comment.user.name) +
+                            " " +
+                            _vm._s(comment.user.last_name)
+                        ),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticClass: "p-2",
+                      staticStyle: { "font-size": "19px !important" },
+                    },
+                    [_vm._v(_vm._s(comment.content))]
                   ),
                 ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("h6", { staticClass: "card-subtitle" }, [
-              _c("i", { staticClass: "far fa-clock" }),
-              _vm._v(" : " + _vm._s(comment.created_at)),
-            ]),
-            _vm._v(" "),
-            _c(
-              "p",
-              {
-                staticClass: "p-4",
-                staticStyle: { "font-size": "19px !important" },
-              },
-              [_vm._v(_vm._s(comment.content))]
-            ),
           ]),
           _vm._v(" "),
           _c("hr"),
@@ -38418,6 +38516,7 @@ var render = function () {
               type: "text",
               placeholder: "comment ...",
               "aria-label": "Recipient's username",
+              id: "comment-text",
               "aria-describedby": "button-addon2",
             },
             domProps: { value: _vm.content },
@@ -38438,7 +38537,7 @@ var render = function () {
               attrs: { type: "button", id: "button-addon2" },
               on: {
                 click: function ($event) {
-                  return _vm.storeComment()
+                  return _vm.saveComment()
                 },
               },
             },
@@ -38460,6 +38559,24 @@ var staticRenderFns = [
         _c("i", { staticClass: "far fa-comment" }),
         _vm._v(" : "),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-inline-item" }, [
+      _c("img", {
+        attrs: { src: "/uploads/default.jpg", height: "40", width: "40" },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "text-danger p-2", attrs: { href: "" } }, [
+      _c("i", { staticClass: "fas fa-times" }),
     ])
   },
   function () {

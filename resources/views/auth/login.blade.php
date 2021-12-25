@@ -7,9 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="{{asset('css/app.css')}}" rel="stylesheet" >
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{asset('css/all.min.css')}}" rel="stylesheet" >
-    <link href="{{ asset('css/front.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
 
 </head>
@@ -19,11 +18,11 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="login-header">
+                <a class="login-brand"><span>b</span><span>غ</span></a>
+                <p class="ml-5 text-bold">{{ __('Login') }}</p>
+            </div>
             <div class="card">
-                <div class="card-header">
-                    <a class="login-brand"><span>b</span><span>غ</span></a>
-                    {{ __('Login') }}
-                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -54,6 +53,11 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
                             </div>
                         </div>
 
@@ -61,11 +65,12 @@
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
+                                    
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
+                                
                             </div>
                         </div>
 
@@ -74,12 +79,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                                <a class="btn btn-link" href="{{ route('register') }}">
+                                        {{ __('Sign up ') }}
+                                </a>
                             </div>
                         </div>
                     </form>

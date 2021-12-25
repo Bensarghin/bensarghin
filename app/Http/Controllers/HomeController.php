@@ -17,14 +17,6 @@ class HomeController extends Controller
 
     public function __construct(){
 
-        $this->middleware('auth',
-            ['except'   =>  ['index',
-                            'read',
-                            'search',
-                            'category',
-                            'getComments',
-                            'languages']]);
-
         //its just a dummy data object.
         $topics = Topic::all();
         $categories = Category::all();
@@ -47,29 +39,6 @@ class HomeController extends Controller
         ]);
     }
 
-    public function createBlog()
-    {
-        $users = Auth::guard('web')->user();
-        return view('Guests.create',[
-        'users'        => $users
-        ]);
-
-    }
-
-    public function storeBlog(Request $request)
-    {
-        $blog = Blog::create([
-            'title' => $request->title,
-            'body' => $request->body,
-            'user_id' => Auth::id()
-        ]);
-        $blogs = Auth::user()->blog()->paginate(10);
-        $blog->category()->attach($request->categories);
-        return redirect()->route('your.blogs',[
-            'blogs' => $blogs
-        ]);
-    }
-
     public function read($blog)
     {
         session(['blog' => $blog]);
@@ -80,15 +49,6 @@ class HomeController extends Controller
         ]);
         else
             return abort('404');
-    }
-
-    public function yourBlogs()
-    {
-        $blogs = Auth::user()->blog()->orderBy('created_at','DESC')->paginate(10);
-        return view('home',[
-            'blogs' => $blogs
-        ]);
-
     }
 
     public function category($category)

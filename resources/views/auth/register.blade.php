@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
-    <title></title>
+    <title></title>    
+    <link href="{{asset('css/app.css')}}" rel="stylesheet" >
+    <link href="{{asset('css/all.min.css')}}" rel="stylesheet" >
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8">            
+            <div class="login-header">
+                <a class="login-brand"><span>b</span><span>غ</span></a>
+                <p class="ml-5 text-bold">{{ __('New account') }}</p>
+            </div>
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -98,7 +104,10 @@
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
-                                </button>
+                                </button>                                
+                                <a class="btn btn-link" href="{{ route('login') }}">
+                                        {{ __('Already have account ?') }}
+                                </a>
                             </div>
                         </div>
                     </form>
