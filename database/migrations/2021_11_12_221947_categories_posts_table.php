@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CategoriesBlogsTable extends Migration
+class CategoriesPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CategoriesBlogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('categ_blog', function (Blueprint $table) {
+        Schema::create('categ_post', function (Blueprint $table) {
             $table->id();
             $table->foreignId('categ_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreignId('blog_id')->references('id')->on('blogs')->onDelete('cascade');
+            $table->foreignId('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CategoriesBlogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categ_blog');
+        Schema::dropIfExists('categ_post');
     }
 }

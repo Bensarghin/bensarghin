@@ -3,7 +3,7 @@
             <div class="card" id="img">
                 <div class="card-body text-center profile">
                     @if(Auth::user()->profile)
-                    <img src="{{asset(Auth::user()->profile)}}" alt="" id="output" width="120" height="120">
+                    <img src="{{asset('users/'.Auth::user()->profile)}}" alt="" id="output" width="120" height="120">
                     @else
                     <img src="{{asset('uploads/default.jpg')}}" id="output" alt="" width="120" height="120">
                     @endif

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class Post extends Model
 {
     use HasFactory;
 
@@ -17,11 +17,15 @@ class Blog extends Model
     }
 
     public function category(){
-        return $this->belongsToMany('App\Models\Category','categ_blog','blog_id','categ_id');
+        return $this->belongsToMany('App\Models\Category','categ_post','post_id','categ_id');
+    }
+
+    public function read(){
+        return $this->hasMany('App\Models\Read','post_id');
     }
 
     public function comment(){
-        return $this->hasMany('App\Models\Comment','blog_id');
+        return $this->hasMany('App\Models\Comment','post_id');
     }
 
     

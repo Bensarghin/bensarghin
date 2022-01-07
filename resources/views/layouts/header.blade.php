@@ -1,5 +1,5 @@
 <!doctype html>
-<html dir="{{__('labels.lang') }}" lang="ar">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" 
     crossorigin="anonymous" 
     referrerpolicy="no-referrer" />
+    <script src="https://cdn.tiny.cloud/1/ei1gu0dbxs4iox3owbhakm10b1kzgr5r2eopqrsexocrssrk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 </head>
 <body class="{{__('labels.dir')}}">
@@ -29,8 +30,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a href="{{route('admin.home')}}" class="nav-link">Acceuil</a></li>
+                        <li class="nav-item"><a href="{{route('admin.home')}}" class="nav-link">Dashboard</a></li>
                         <li class="nav-item"><a href="{{route('blog.index')}}" class="nav-link">Blogs</a></li>
+                        <li class="nav-item"><a href="{{route('blog.add')}}" class="nav-link">Blog +</a></li>
                         <li class="nav-item"><a href="{{route('user.index')}}" class="nav-link">Users</a></li>
                         <li class="nav-item"><a href="{{route('category.index')}}" class="nav-link">Categories</a></li>
                         <li class="nav-item"><a href="{{route('topic.index')}}" class="nav-link">Topics</a></li>

@@ -2,13 +2,13 @@
 
 		<div class="card mt-3">
 			<div class="card-header">
-				<h6 class="card-subtitle text-muted">Comments <i class="far fa-comment"></i> : </h6>
+				<h6 class="card-subtitle p-2 text-muted">Comments <i class="far fa-comment fa-lg"></i>  {{comments.length}} : </h6>
 			</div>
 			<div class="card-body comments">
 				<div  v-for="comment in comments" :key="comment.id">
 				<div class="text-muted">
 					<div v-if="comment.user.id==user.id" class="bg-light">
-						<h6 class="p-2 card-subtitle text-muted"><i class="far fa-clock"></i> : {{comment.created_at}}</h6>
+						<h6 class="p-2 card-subtitle text-muted"><i class="far fa-clock"></i> : {{comment.created_at | formatDate}}</h6>
 						<ul class="list-inline">
 							<li class="list-inline-item">
 								<img src="/uploads/default.jpg" height="40" width="40">
@@ -22,12 +22,12 @@
 							<p class="p-2" id="comment-box" style="font-size:19px !important;">{{comment.content}}</p>
 							</li>
 							<li class="list-inline-item">
-								<a @click="edit(comment)" class="text-muted p-2"> <i class="fas fa-pen-square"></i> </a> | <a href="" class="text-danger p-2"> <i class="fas fa-times"></i> </a>
+								<a @click="edit(comment)" class="text-muted p-2"> <i class="fas fa-pen-square"></i> </a> | <a @click="deleteComment(comment.id)" class="text-danger p-2"> <i class="fas fa-times"></i> </a>
 							</li>
 						</ul>	
 					 </div>			
 					 <div v-else class="bg-body">
-						<h6 class="p-2 card-subtitle text-muted"><i class="far fa-clock"></i> : {{comment.created_at}}</h6>
+						<h6 class="p-2 card-subtitle text-muted"><i class="far fa-clock"></i> : {{comment.created_at | formatDate}}</h6>
 						<ul class="list-inline">
 							<li class="list-inline-item">
 								<img src="/uploads/default.jpg" height="50" width="50" class="rounded">
@@ -58,7 +58,8 @@ export default {
         user:[],
         comments:[],
 		content:'',
-		isEdited:false
+		isEdited:false,
+		comment_id:''
         }
     },
     created(){
@@ -87,8 +88,9 @@ export default {
 			}
 			else{
 				axios
-	            .post('/updateComment',{
-					content:this.content
+	            .post('/updatecomment',{
+					content:this.content,
+					comment_id:this.comment_id
 				})
 				.then(this.getData);
 				
@@ -96,11 +98,19 @@ export default {
 				this.isEdited=false
 			}
 		},
+		deleteComment(comment_id){
+				axios
+	            .post('/deletecomment',{
+					id:comment_id
+				})
+				.then(this.getData);
+			},
 		edit(comment){
 			document.getElementById('comment-text').focus();
 			this.content=comment.content;
-			this.isEdited=true
+			this.isEdited=true;
+			this.comment_id = comment.id;
 		}
     }
-}
+};
 </script>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html dir="{{__('labels.lang') }}" lang="ar">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
     referrerpolicy="no-referrer" />
 
 </head>
-<body class="{{__('labels.dir')}}" >
+<body>
 
 <div class="container mt-5">
     <div class="row justify-content-center">

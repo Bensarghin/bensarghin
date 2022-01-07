@@ -16,12 +16,14 @@
 							<h5 class="text-muted text-capitalize p-2">Write by : {{$blog->user->name}} {{$blog->user->last_name}}</h5>
 						</li>
 					</ul>
-					<h6 class="card-subtitle text-muted"> <i class="far fa-clock"></i> : {{$blog->created_at->format('d M Y')}}</h6>
+					<h6 class="card-subtitle text-muted"> <i class="far fa-clock"></i> : {{$blog->created_at->diffForHumans()}}</h6>
 				</div>
 				<img class="card-img-top mt-2" src="/uploads/best.webp" alt="Card image cap">
 				<p class="mb-4 mt-5">{{$blog->body}}</p>
+
+					<h5 class="text-muted">Reads {{$blog->read->count()}}</h5>
 				@foreach($blog->category as $category)
-					<a href="" class="btn btn-secondary">#{{$category->title}}</a>
+					<a href="" class="btn btn-primary">#{{$category->title}}</a>
 				@endforeach
 			</div>
 		</div>
@@ -35,22 +37,7 @@
 		</div>
 		@endauth
 	</div>
-	<div class="col-md-4">
-		<div class="text-center">
-			<ul class="list-inline">
-			  <li class="list-inline-item"><a class="h4 text-bold text-uppercase text-muted">Share :</a></li>
-			  <li class="list-inline-item"><a href="" style="color: #002087"><i class="fab fa-facebook-square fa-2x"></i></a></li>
-			  <li class="list-inline-item"><a href="" style="color: #de0023"><i class="fab fa-instagram-square fa-2x"></i></a></li>
-			  <li class="list-inline-item"><a href="" style="color: #000"><i class="fab fa-github-square fa-2x"></i></a></li>
-			  <li class="list-inline-item"><a href="" style="color: #1c99e6"><i class="fab fa-twitter-square fa-2x"></i></a></li>
-			  <li class="list-inline-item"><a href="" style="color: #091d2f"><i class="fab fa-linkedin fa-2x"></i></a></li>
-			</ul>
-		</div>
-		<div class="text-center">
-			@include('Guests.layouts.categories')
-		</div>
-		<hr>
-	</div>
+  @include('Guests.layouts.sidebar')
 </div>
 <script>
 </script>

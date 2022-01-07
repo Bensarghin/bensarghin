@@ -17,7 +17,12 @@
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-body">
-                    <form action="">
+                    <form @submit="formSubmit" enctype="multipart/form-data" method="POST">
+                        <label for="customFile" class="form-label">Image :</label>
+                        <div class="custom-file mb-3">
+                          <input type="file" accept="image/*" class="custom-file-input" @change="onChange" id="customFile" name="image">
+                          <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
                         <div class="mb-3">
                             <label for="title" class="form-label">title :</label>
                             <input type="text" class="form-control" v-model="title" id="title">
@@ -26,8 +31,8 @@
                             <label for="decsription" class="form-label">Description</label>
                             <textarea name="" v-model="description"  class="form-control" id="decsription" rows="5"></textarea>
                         </div>
-                        <button type="button" class="btn btn-primary" @click="inserttopic()">{{updates}} <i class="fas fa-plus fa-1x ml-2"></i></button>
-                        <button type="button" class="btn btn-secondary" @click="emptyfields()" style="border-radius:15px">Empty <i class="fas fa-trash fa-1x ml-2" style="font-size: 10px;"></i></button>
+                        <button type="submit" class="btn btn-primary">{{updates}} <i class="fas fa-plus fa-1x ml-2"></i></button>
+                        <button type="button" class="btn btn-secondary" style="border-radius:15px">Empty <i class="fas fa-trash fa-1x ml-2" style="font-size: 10px;"></i></button>
                     </form>
                 </div>
             </div>
@@ -43,13 +48,14 @@ export default {
         topics:[],
         title:'',
         description:'',
+        image:'',
         topic_id:'',
+        success: '',
         updates:'Insert'
         }
     },
     created(){
         this.getData();
-        this.getTopics();
     },
     methods:{
         getData(){
@@ -70,15 +76,33 @@ export default {
             this.updates = 'Update'
         },
        /* == axios updates == */
-        inserttopic(){
-            axios
-            .post('/admin/topics/inserttopic',{
-                title:this.title,
-                description:this.description
-            })
-            .then(this.getData())
-            .catch(error=>log.console(error))
-        }
+        onChange(e) {
+                this.image = e.target.files[0];
+            },
+            formSubmit(e) {
+                e.preventDefault();
+                let existingObj = this;
+
+                const config = {
+                    headers: {
+                        'content-type': 'multipart/form-data'
+                    }
+                }
+
+                let data = new FormData();
+                data.append('image', this.image);
+                data.append('title', this.title);
+                data.append('description', this.description);
+
+                axios.post('/admin/topics/inserttopic', data, config)
+                    .then(function (res) {
+                        existingObj.success = res.data.success;
+                    })
+                    .then(this.getData())
+                    .catch(function (err) {
+                        existingObj.output = err;
+                    });
+        },
     }
-}
+};
 </script>

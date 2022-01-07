@@ -9,6 +9,7 @@ use App\Http\Controllers\Backoffice\BlogController;
 use App\Http\Controllers\Backoffice\UserController;
 use App\Http\Controllers\Backoffice\CategoryController;
 use App\Http\Controllers\Backoffice\DashboardController;
+use App\Http\Controllers\Backoffice\PostController;
 use App\Http\Controllers\Backoffice\TopicController;
 
 
@@ -31,12 +32,16 @@ use App\Http\Controllers\ProfileController;
 */
 
     Route::prefix('admin')->group(function ()  {
+        Route::get('/mce',[PostController::class,'index'])->name('blog.add');
 
         Route::get('/',[DashboardController::class,'index'])->name('admin.home');
         Route::get('home',[DashboardController::class,'index'])->name('admin.home');
         Route::get('login', [AdminController::class,'login'])->name('admin.login');
         Route::post('check', [AdminController::class,'check'])->name('admin.check');
         Route::post('logout', [AdminController::class,'logout'])->name('admin.logout');
+        // dashboard http
+        Route::get('/getblogs', [DashboardController::class, 'getBlogs']);
+        Route::get('/getusers', [DashboardController::class, 'getUsers']);
     
     Route::prefix('blogs')->name('blog.')->group(function () {
         Route::get('/', [BlogController::class,'index'])->name('index');
@@ -82,17 +87,22 @@ Route::group(
         Route::get('/delete/{id}', [BlogerController::class, 'destroy'])->name('delete.blog');
 
 
-
         Route::post('/search-blog', [HomeController::class, 'searchBlog'])->name('search.blog');
         Route::get('/read-blog/{blog}', [HomeController::class, 'read'])->name('read.blog');
-        Route::get('/getcomments', [HomeController::class, 'getComments']);
-        Route::post('/comment', [HomeController::class, 'storeComment']);
+
 
         Route::get('/category/{category}', [HomeController::class, 'category'])->name('category.blogs');
+        Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
+        Route::post('/update',[ProfileController::class,'update'])->name('user.update');
+
+        // http routes
+        Route::get('/getcomments', [HomeController::class, 'getComments']);
+        Route::post('/comment', [HomeController::class, 'storeComment']);
+        Route::post('/updatecomment', [HomeController::class, 'updateComment']);
+        Route::post('/deletecomment', [HomeController::class, 'deleteComment']);
+        // pages routes
         Route::get('/contact-us', [pageController::class,'contact'])->name('contact');
         Route::get('/about', [pageController::class,'about'])->name('about');
-
-        Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
         
 Auth::routes();
 //...

@@ -3913,12 +3913,12 @@ input[type=button].btn-block {
 
 .nav-tabs {
   border-bottom: 1px solid #dee2e6;
+  box-shadow: 1px 6px 9px rgb(1 1 1 / 7%);
 }
 .nav-tabs .nav-link {
   margin-bottom: -1px;
   border: 1px solid transparent;
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+  color: #6c757d;
 }
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
   border-color: #e9ecef #e9ecef #dee2e6;
@@ -3930,9 +3930,9 @@ input[type=button].btn-block {
 }
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #495057;
-  background-color: #f8fafc;
-  border-color: #dee2e6 #dee2e6 #f8fafc;
+  color: #fff;
+  background-color: #ff5100;
+  border-color: #ff5100;
 }
 .nav-tabs .dropdown-menu {
   margin-top: -1px;

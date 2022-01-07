@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backoffice;
 use App\Http\Controllers\Controller;
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class TopicController extends Controller
 {
@@ -29,7 +30,8 @@ class TopicController extends Controller
      */
     public function create()
     {
-        
+        $topics = Topic::all();
+        return response()->json($topics);
     }
 
     /**
@@ -40,7 +42,20 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        Topic::insert([$request->all()]);
+        $request->validate([
+               'image' => 'required|mimes:jpg,jpeg,png,csv,txt,xlx,xls,pdf|max:2048'
+            ]);
+    
+            if($request->file()) {
+                $file_name = time().'_'.$request->file('image')->getClientOriginalName();
+                $request->file('image')->move(public_path('uploads/'), $file_name);
+        }
+        Topic::insert([
+            'image' => $file_name,
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
+        return response()->json(['success'=>'File uploaded successfully.']);
     }
 
     /**

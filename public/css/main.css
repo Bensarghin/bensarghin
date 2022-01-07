@@ -1,23 +1,5 @@
 /*== table style ==*/
 
-.table-striped td{
-   color:#0000007a !important;
-   font-weight: 600;
-}
-.table-striped .table-thead td
-{
-    color: #FFF !important;
-}
-.table-striped .table-thead
-{
-    background-color: #B000B9 !important;
-    border: #B000B9  2px solid !important;
-    color: #FFF;
-}
-.table-striped{
-    background-color: #ebedef;
-}
-
 .btn-secondary i,
 .btn-danger i,
 .btn-info i{

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'date_nais',
         'profile',
         'email',
+        'sexe',
         'password',
     ];
 
@@ -47,11 +48,15 @@ class User extends Authenticatable
 
     public $timestamps = true;
     
-    public function blog(){
-        return $this->hasMany('App\Models\Blog','user_id');
+    public function post(){
+        return $this->hasMany('App\Models\Post','user_id');
     }
 
     public function comment(){
         return $this->hasMany('App\Models\Comment','user_id');
+    }
+
+    public function read(){
+        return $this->hasMany('App\Models\Read','user_id');
     }
 }

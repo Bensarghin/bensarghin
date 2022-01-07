@@ -8,7 +8,7 @@
             <form action="{{route('store.blog')}}" method="POST">
                 @csrf
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">{{__('labels.title')}} :</label>
+                    <label for="exampleFormControlInput1" class="form-label">{{__('labels.title')}}/Question ? :</label>
                     <input type="text" class="form-control" value="{{old('title')}}" placeholder="{{__('labels.title')}} :" name="title">
                     <span class="text-danger">@error('title') {{$message}} @enderror</span>
                   </div>
@@ -34,21 +34,6 @@
         </div>
 
     </div>
-    <div class="col-md-4">
-      <div class="text-center">
-        <ul class="list-inline">
-          <li class="list-inline-item"><a class="h4 text-bold text-uppercase text-muted">Share :</a></li>
-          <li class="list-inline-item"><a href="" style="color: #002087"><i class="fab fa-facebook-square fa-2x"></i></a></li>
-          <li class="list-inline-item"><a href="" style="color: #de0023"><i class="fab fa-instagram-square fa-2x"></i></a></li>
-          <li class="list-inline-item"><a href="" style="color: #000"><i class="fab fa-github-square fa-2x"></i></a></li>
-          <li class="list-inline-item"><a href="" style="color: #1c99e6"><i class="fab fa-twitter-square fa-2x"></i></a></li>
-          <li class="list-inline-item"><a href="" style="color: #091d2f"><i class="fab fa-linkedin fa-2x"></i></a></li>
-        </ul>
-      </div>
-      <div class="text-center">
-        @include('Guests.layouts.categories')
-      </div>
-      <hr>
-    </div>
+      @include('Guests.layouts.sidebar')
 </div>
 @endsection

@@ -8,6 +8,9 @@
       $(document).ready(function() {
           $('.js-example-basic-multiple').select2();
       });
+      tinymce.init({
+        selector: '#textarea'
+      });
     </script>
     </body>
 </html>

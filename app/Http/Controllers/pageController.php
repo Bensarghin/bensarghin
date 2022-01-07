@@ -17,10 +17,13 @@ class pageController extends Controller
         //its just a dummy data object.
         $topics = Topic::all();
         $categories = Category::all();
+        $top_blogs = Post::withCount('Read')->withCount('Comment')
+        ->orderByDesc('read_count')->orderByDesc('comment_count')->paginate(8);
         // Sharing is caring
         View::share([
             'categories'=> $categories,
             'topics'=> $topics,
+            'top_blogs' => $top_blogs
     ]);
     }
     public function contact(){

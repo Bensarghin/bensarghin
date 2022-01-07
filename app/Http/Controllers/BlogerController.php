@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Blog;
+use App\Models\Post;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Topic;
@@ -23,10 +23,14 @@ class BlogerController extends Controller
         //its just a dummy data object.
         $topics = Topic::all();
         $categories = Category::all();
+        $top_blogs = Post::withCount('Read')->withCount('Comment')
+        ->orderByDesc('read_count')->orderByDesc('comment_count')->paginate(8);
         // Sharing is caring
         View::share([
             'categories'=> $categories,
             'topics'=> $topics,
+            'top_blogs' => $top_blogs
+            
     	]);
     }
     public function create()
@@ -45,7 +49,7 @@ class BlogerController extends Controller
             'body'=>'required|min:90',
             'categories' => 'required'
         ]);
-        $blog = Blog::create([
+        $blog = Post::create([
             'title' => $request->title,
             'body' => $request->body,
             'user_id' => Auth::id()
@@ -67,7 +71,7 @@ class BlogerController extends Controller
     }
 
     public function edit($id){
-    	$blog = Blog::where('id',$id)->first();
+    	$blog = Post::where('id',$id)->first();
     	if($blog){
 	    	if($blog->user->id === Auth::id()) {
 	    		return view('Guests.edit',[
@@ -89,18 +93,18 @@ class BlogerController extends Controller
     		'body'=>'required|min:90',
     		'categories' => 'required'
     	]);
-    	Blog::where('id',$id)
+    	Post::where('id',$id)
     	->update([
     		'title'=>$request->title,
     		'body'=>$request->body
     	]);
-    	$blog = Blog::find($id);
+    	$blog = Post::find($id);
     	$blog->category()->sync($request->categories);
     	return redirect()->route('your.blogs');
     }
 
     public function destroy($id){
-    	$blog = Blog::where('id',$id)->first();
+    	$blog = Post::where('id',$id)->first();
     	if($blog){
 	    	if($blog->user->id === Auth::id()) {
 	    		$blog->delete();

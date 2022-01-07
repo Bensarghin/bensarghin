@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
+use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::orderBy('created_at','DESC')->get();
+        $blogs = Post::orderBy('created_at','DESC')->get();
         return view('Backoffice.Blogs.list',['blogs'=>$blogs]);
     }
 
@@ -53,7 +53,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $blog = Blog::create([
+        $blog = Post::create([
             'title' => $request->title,
             'body' => $request->body,
             'user_id' => Auth::id()

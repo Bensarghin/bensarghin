@@ -8,6 +8,14 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+import moment from 'moment';
+
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(String(value)).fromNow()
+    }
+});
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -22,7 +30,8 @@ window.Vue = require('vue').default;
 Vue.component('category-list-component', require('./components/Category/ListComponent.vue').default);
 Vue.component('comments-component', require('./components/readComments/comments.vue').default);
 Vue.component('topic-list-component', require('./components/Topic/listComponent.vue').default);
-
+Vue.component('new-blog-component', require('./components/Dashboard/newBlogComponent.vue').default);
+Vue.component('new-register-component', require('./components/Dashboard/newRegisterComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

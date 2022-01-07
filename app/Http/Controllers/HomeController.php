@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Blog;
+use App\Models\Post;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Topic;
+use App\Models\Read;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -20,10 +23,13 @@ class HomeController extends Controller
         //its just a dummy data object.
         $topics = Topic::all();
         $categories = Category::all();
+        $top_blogs = Post::withCount('Read')->withCount('Comment')
+        ->orderByDesc('read_count')->orderByDesc('comment_count')->paginate(8);
         // Sharing is caring
         View::share([
             'categories'=> $categories,
             'topics'=> $topics,
+            'top_blogs' => $top_blogs
     ]);
     }
     /**
@@ -33,20 +39,30 @@ class HomeController extends Controller
      */
     public function index()
     {
-    	$blogs = Blog::orderBy('created_at','DESC')->paginate(10);
+    	$blogs = Post::orderBy('created_at','DESC')->paginate(10);
         return view('home',[
         	'blogs' => $blogs
         ]);
     }
 
-    public function read($blog)
+    public function read($blog_id)
     {
-        session(['blog' => $blog]);
-        $blog = Blog::find($blog);
-        if($blog)
-        return view('Guests.read')->with([
-            'blog' => $blog
-        ]);
+        session(['blog' => $blog_id]);
+        $blog_id = $blog_id;
+        $blog = Post::find($blog_id);
+        $user_id = Auth::id();
+        if($blog){
+            if(Auth::user()){
+                DB::table('reads')
+                ->insertOrIgnore([
+                    'user_id' => $user_id,
+                    'blog_id' => $blog_id
+                ]);
+            }
+            return view('Guests.read')->with([
+                'blog' => $blog
+            ]);
+        }
         else
             return abort('404');
     }
@@ -86,4 +102,20 @@ class HomeController extends Controller
            'user_id' => $user_id
         ]);
     }
+
+    public function updateComment(Request $request)
+    {
+        $id = $request->comment_id;
+        Comment::find($id)->update([
+            'content' => $request->content
+        ]);
+    }
+
+    public function deleteComment(Request $request)
+    {
+        $id = $request->id;
+        Comment::find($id)->delete();
+    }
+
+
 }
