@@ -23,7 +23,7 @@ class DashboardController extends Controller
     	$blogs = Post::whereDate('created_at',date('Y-m-d'))->get();
     	$top_blogs = Post::withCount('Read')->withCount('Comment')
     	->orderByDesc('read_count')->orderByDesc('comment_count')->get();
-    	$top_categories = Category::withCount('Blog')->orderBy('blog_count','DESC')->get();
+    	$top_categories = Category::withCount('Post')->orderBy('post_count','DESC')->get();
     	$active_users = User::where('active',1)->get();
         return view('Backoffice.Dashboard.index',[
         	'active_users' => $active_users,
