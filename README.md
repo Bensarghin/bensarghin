@@ -27,8 +27,4 @@ As a full-stack developer, I am proficient in the following technologies:
 - **Frontend:** HTML, CSS, Tailwind CSS, Bootstrap
 - **Projects:** [SVT Mousstaid](https://svtmousstaid.com), [AR Magic](https://armagic.app), [Avon Indian Grill](https://avonindiangrill.com)
 
-### Contact Me
-
-If you're interested in collaborating on a project or have any inquiries, feel free to reach out to me via email or phone.
-
-Let's build something awesome together!
+[![bensarghin's GitHub activity graph](https://activity-graph.herokuapp.com/graph?username=bensarghin&&theme=xcode)](https://github.com/bensarghin)
