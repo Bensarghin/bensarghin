@@ -2,7 +2,7 @@
 
 ## Freelance Laravel/Vue.js Full-stack Developer
 
-[![MasterHead](https://cdn.autonomous.ai/static/upload/images/common/upload/20210812/height-adjustable-standing-desk-developer2116a9e4600.jpg)
+![MasterHead](https://cdn.autonomous.ai/static/upload/images/common/upload/20210812/height-adjustable-standing-desk-developer2116a9e4600.jpg)
 
 Welcome to my GitHub profile! I'm Hamid Bensarghin, a seasoned Laravel/Vue.js full-stack developer with over 5 years of experience in the field. I specialize in crafting robust web applications with a focus on delivering high-quality, scalable solutions.
 
