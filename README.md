@@ -2,6 +2,8 @@
 
 ## Freelance Laravel/Vue.js Full-stack Developer
 
+[![MasterHead](https://cdn.pixabay.com/photo/2016/11/23/14/45/coding-1853305_960_720.jpg)
+
 Welcome to my GitHub profile! I'm Hamid Bensarghin, a seasoned Laravel/Vue.js full-stack developer with over 5 years of experience in the field. I specialize in crafting robust web applications with a focus on delivering high-quality, scalable solutions.
 
 ### About Me
