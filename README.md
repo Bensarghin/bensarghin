@@ -27,4 +27,4 @@ As a full-stack developer, I am proficient in the following technologies:
 
 - **Projects:** [SVT Mousstaid](https://svtmousstaid.com), [AR Magic](https://armagic.app), [Avon Indian Grill](https://avonindiangrill.com)
 
-[![bensarghin's GitHub activity graph](https://activity-graph.herokuapp.com/graph?username=bensarghin&&theme=xcode)](https://github.com/bensarghin)
+<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=bensarghin&show_icons=true&locale=en&layout=compact" alt="bensarghin" /></p>
