@@ -15,6 +15,7 @@ Welcome to my GitHub profile! I'm Hamid Bensarghin, a seasoned Laravel/Vue.js fu
 - **Phone:** +212607749374
 
 ### Freelance Platform
+![Fiverr](https://github.com/Bensarghin/bensarghin/assets/77929743/87433a91-68c0-434b-9902-374dba1eb62b)
 
 - **Fiverr Account:** [istaweb](https://www.fiverr.com/istaweb)
 
